@@ -9,10 +9,15 @@
     <h1><%= title %></h1>
     <p>Welcome to <%= title %></p>
     <ul class="nav nav-tabs nav-justified">
-    <% restlist.forEach(function(item){%>
-      <li role="presentation"><a href=/<%= item %>><%= item %></a></li>
+    <% blist.forEach(function(item){%>
+      <li role="presentation" <% if (item == title) {%> class="active" <% } %>><a href=/<%= item %>><%= item %></a></li>
     <% }); %>
-
+    </ul>
+      <% if (restlist != '') { %>
+      <% restlist.forEach(function(item){%>
+      <li><%= item.name %>,<%= item.cuisine %></a></li>
+      <% }); %>
+      <% } %>
       <!--li role="presentation" class="active"><a href="#">Home</a></li>
       <li role="presentation"><a href="#">Profile</a></li>
       <li role="presentation"><a href="#">Messages</a></li-->

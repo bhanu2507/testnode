@@ -14,10 +14,41 @@
     <% }); %>
     </ul>
       <% if (restlist != '') { %>
-      <% restlist.forEach(function(item){%>
-      <li><%= item.name %>,<%= item.cuisine %></a></li>
-      <% }); %>
+    <ul class="list-group">
+      <% rests.forEach( function( rest ) { %>
+      <li class="list-group-item"><%= rest.name %></li>
+      <% }) %>
+    </ul>
+
+    <% if (pageCount > 1) { %>
+    <ul class="pagination">
+      <% if (currentPage > 1) { %>
+      <li><a href=/<%= title %>/?page=1>&laquo;</a></li>
       <% } %>
+      <% var i = 1;
+        if (currentPage > 5) {
+          i = +currentPage - 4;
+        } %>
+      <% if (i !== 1) { %>
+      <li class="disabled"><a href="#">...</a></li>
+      <% } %>
+      <% for (i; i<=pageCount; i++) { %>
+      <% if (currentPage == i) { %>
+      <li class="active"><span><%= i %> <span class="sr-only">(current)</span></span></li>
+      <% } else { %>
+      <li><a href="/<%= title %>/?page=<%= i %>"><%= i %></a></li>
+      <% } %>
+      <% if (i == (+currentPage + 4)) { %>
+      <li class="disabled"><a href="#">...</a></li>
+      <% break; } %>
+      <% } %>
+      <% if (currentPage != pageCount) { %>
+      <li><a href="/<%= title %>/?page=<%= pageCount %>">&raquo;</a></li>
+      <% } %>
+    </ul>
+    <% } %>
+      <% } %>
+
       <!--li role="presentation" class="active"><a href="#">Home</a></li>
       <li role="presentation"><a href="#">Profile</a></li>
       <li role="presentation"><a href="#">Messages</a></li-->
